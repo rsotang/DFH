@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: pydvh
+Version: 1.0.10
+Summary: pyDVH is a package for parsing DVH files.
+Home-page: https://www.sachpazidis.com/pyDVH/
+Author: Ilias Sachpazidis
+Author-email: ilias.sachpazidis@gmail.com
+License: MIT
+Project-URL: Bug Tracker, https://www.sachpazidis.com/pyDVH/bugs
+Project-URL: Documentation, https://www.sachpazidis.com/pyDVH/docs
+Project-URL: Source Code, https://github.com/isachpaz/pyDVH/
+Keywords: DVH,radiation,treatment,VARIAN,Eclipse
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy (>=1.18)
+
+# pyDVH
+It is a package for parsing DVH exported files from various treatment planning systems.
+Presently, only DVH file exported from VARIAN Eclipse treatment planning system is supported.
+
+All pydvh wheels distributed on PyPI are MIT licensed.
+
+
+
