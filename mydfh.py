@@ -16,15 +16,8 @@ def create_dvh(rtdose, rtstruct, roi_name):
     dose_data = np.array(rtdose.pixel_array)
     dose_grid = dose_data * rtdose.DoseGridScaling
 
-    print(length(dose_data))
-  
-    clase_objeto = dose_grid.__class__
-    metodos_clase = inspect.getmembers(clase_objeto, predicate=inspect.ismethod)
-
-    # Obtener todos los atributos de la clase
-    atributos_clase = inspect.getmembers(clase_objeto, predicate=inspect.isattribute)
-
-    print(clase_objeto)
+    #print(dose_data.shape) 114 114 200  
+    #print(dose_data[:,:,100])  
 
   
     # Extraer información de la estructura de interés
@@ -39,6 +32,23 @@ def create_dvh(rtdose, rtstruct, roi_name):
     
     return dvh_data
 
+#funcion temporal para comprobar como funcionan las rois
+def show_roi(roi_name):
+   # Extraer información de la estructura de interés
+    for roi in rtstruct.StructureSetROISequence:
+        if roi.ROIName == roi_name:
+            roi_number = roi.ROINumber
+    
+    contour_data = [contour for contour in rtstruct.ROIContourSequence if contour.ReferencedROINumber == roi_number][0].ContourSequence
+
+    print(contour_data.__class__)
+    print(contour_data)
+    # Aquí debes implementar el cálculo del DVH basado en dose_grid y contour_data
+    # El cálculo exacto puede variar dependiendo de los detalles de tu implementación y del archivo RTStruct.
+    
+    return roi
+
+
 def plot_dvh(dvh_data):
     plt.plot(dvh_data['doses'], dvh_data['volume_percentages'])
     plt.xlabel('Dose (Gy)')
@@ -48,12 +58,12 @@ def plot_dvh(dvh_data):
 
 if __name__ == "__main__":
     rtdose_path = "rtdose.dcm"
-    rtstruct_path = "rtstruct.dcm"
+    rtstruct_path = "rtstruct_lungs.dcm"
     
     rtdose, rtstruct = load_dicom_files(rtdose_path, rtstruct_path)
     
     roi_name = "Lung_L"  # Por ejemplo: "Pulmón"
-    
-    dvh_data = create_dvh(rtdose, rtstruct, roi_name)
+    roi = show_roi(roi_name)
+    #dvh_data = create_dvh(rtdose, rtstruct, roi_name)
     
     #plot_dvh(dvh_data)
